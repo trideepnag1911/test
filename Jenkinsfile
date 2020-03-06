@@ -1,17 +1,8 @@
-pipeline {
-     agent any
-     stages {
-        stage "build" {
-		steps {
-		   sh git pull https://github.com/ashwin139/Books.git
-}
-}
-        stage "execute" {
-		steps {
-		   sh /Books/script.sh
-}
-}
-}
-
-
+node {
+	stage('Clone sources') {
+        git url: 'https://github.com/trideepnag1911/test.git'
+    }
+	stage('Execute') {
+	sh test/script.sh
+    }
 }
