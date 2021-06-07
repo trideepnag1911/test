@@ -46,7 +46,7 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: user/app:latest
+        tags: trideepnag/maven-with-github-action:1.0
     -
       name: Image digest
       run: echo ${{ steps.docker_build.outputs.digest }}        
