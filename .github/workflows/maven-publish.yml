@@ -27,8 +27,8 @@ jobs:
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
     - name: Build with Maven
-      run: mvn -B package --file initial/pom.xml
+      run: |
+        mvn -B package --file initial/pom.xml
+        cp /home/runner/work/test/test/initial/target/gs-maven-0.1.0-shaded.jar initial/
 
-    - name: Publish to GitHub Packages Apache Maven
-      run: cp /home/runner/work/test/test/initial/target/gs-maven-0.1.0-shaded.jar initial/
       
