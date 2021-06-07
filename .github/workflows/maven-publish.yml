@@ -33,7 +33,7 @@ jobs:
         git config --global user.name "trideepnag1911"
         git add .
         git commit -m "adding target"
-        git push target/
+        git push
    
 
       
