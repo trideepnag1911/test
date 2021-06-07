@@ -73,5 +73,5 @@ jobs:
       run: |-
         ./kustomize edit set image maven-with-actions=gcr.io/$PROJECT_ID/maven-with-actions:1.0
         ./kustomize build . | kubectl apply -f -
-        kubectl rollout status deployment/test-deployment
+        kubectl rollout status deployment/test
         kubectl get services -o wide
