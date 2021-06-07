@@ -29,6 +29,8 @@ jobs:
     - name: Build with Maven
       run: |
         mvn -B package --file initial/pom.xml
+        git config --global user.email "trideepnag@gmail.com"
+        git config --global user.name "trideepnag1911"
         git add .
         git commit -m "adding target"
         git push . https://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@github.com/trideepnag1911/test.git
