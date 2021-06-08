@@ -61,6 +61,9 @@ jobs:
     - name: Publish
       run: |-
         docker push "gcr.io/$PROJECT_ID/maven-with-actions:1.0"
+    
+    - name: Create GKE Cluster
+      run: gcloud container clusters create test-cluster1
 
     # Set up kustomize
     - name: Set up Kustomize
