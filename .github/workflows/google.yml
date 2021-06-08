@@ -51,12 +51,10 @@ jobs:
         java-version: '11'
         distribution: 'adopt'
     - name: Build with Maven
-      run: mvn -B package --file initial/pom.xml
-
-    # Build the Docker image
-    - name: Docker Image Build
-      run: |-
+      run: |
+        mvn -B package --file initial/pom.xml
         docker build --tag "gcr.io/$PROJECT_ID/maven-with-actions:1.0" .
+        
 
     # Push the Docker image to Google Container Registry
     - name: Publish
