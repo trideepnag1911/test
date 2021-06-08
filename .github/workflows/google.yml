@@ -20,7 +20,7 @@ on:
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: test-cluster1    # TODO: update to cluster name
-  GKE_ZONE: us-central1-c   # TODO: update to cluster zone
+  GKE_ZONE: us-central1-a   # TODO: update to cluster zone
   DEPLOYMENT_NAME: gke-test-with-github-actions # TODO: update to deployment name
   IMAGE: static-site
 
@@ -45,13 +45,6 @@ jobs:
     - run: |-
         gcloud --quiet auth configure-docker
 
-    # Get the GKE credentials so we can deploy to the cluster
-    - uses: google-github-actions/get-gke-credentials@v0.2.1
-      with:
-        cluster_name: ${{ env.GKE_CLUSTER }}
-        location: ${{ env.GKE_ZONE }}
-        credentials: ${{ secrets.GKE_SA_KEY }}
-
     # Build the Docker image
     - name: Build
       run: |-
@@ -64,6 +57,13 @@ jobs:
     
     - name: Create GKE Cluster
       run: gcloud container clusters create test-cluster1 --zone us-central1-a
+    
+    # Get the GKE credentials so we can deploy to the cluster
+    - uses: google-github-actions/get-gke-credentials@v0.2.1
+      with:
+        cluster_name: ${{ env.GKE_CLUSTER }}
+        location: ${{ env.GKE_ZONE }}
+        credentials: ${{ secrets.GKE_SA_KEY }}
 
     # Set up kustomize
     - name: Set up Kustomize
